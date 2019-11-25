@@ -6,18 +6,18 @@ schemes. In particular, we include scripts for lattice-based PKE and KEM schemes
 
 ## Get_ciphertext_scripts
 
-* `Get_ciphertext_scripts`: This directory contains scripts that search for suitable ciphertexts to perform side-channel assisted chosen ciphertext attacks over the CCA-seucre Kyber, LAC and NewHope KEM schemes. The scripts perform a brute-force/randomized search for the ciphertexts which satisfy a certain set of conditions, depending on the scheme.
+This directory contains scripts that search for suitable ciphertexts to perform side-channel assisted chosen ciphertext attacks over the CCA-seucre Kyber, LAC and NewHope KEM schemes. The scripts perform a brute-force/randomized search for the ciphertexts which satisfy a certain set of conditions, depending on the scheme.
 
 ## Implementation_scripts
 
-*  `Implementation_scripts`: This directory contains the implementation scripts for three schemes in particular: Kyber512, LAC128 and Round5 (R5ND_1kemcca_5d). The implementations are part of the
+This directory contains the implementation scripts for three schemes in particular: Kyber512, LAC128 and Round5 (R5ND_1kemcca_5d). The implementations are part of the
 **pqm4** library, a benchmarking and testing framework for PQC schemes on the ARM Cortex-M4
 microcontroller. The implementation scripts have been modified appropriately for easy acquisition of
 traces to perform the chosen-ciphertext attack with pre-computed chosen-ciphertexts. More details to perform trace acquisition are provided inside the directory.
 
 ## Attack_scripts
 
-* `Attack_scripts`: This directory contains side-channel traces corresponding to the targeted operations within various schemes and the matlab scripts to perform the attack using the side-channel traces.
+This directory contains side-channel traces corresponding to the targeted operations within various schemes and the matlab scripts to perform the attack using the side-channel traces.
 
 ## License
 All code in this repository is released under the conditions of [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
