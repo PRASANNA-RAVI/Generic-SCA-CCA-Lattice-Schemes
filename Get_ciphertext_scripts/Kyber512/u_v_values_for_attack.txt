@@ -1,0 +1,24 @@
+Choice_u = 210
+Choice_v = 209
+
+1, 0, 0, 0, 0
+
+Choice_u = 210
+Choice_v = 2705
+
+0, 0, 0, 0, 1
+
+Choice_u = 101
+Choice_v = 644
+
+1, 1, 0, 0, 0
+
+Choice_u = 100
+Choice_v = 2626
+
+0, 0, 0, 1, 1
+
+Choice_u = 415
+Choice_v = 1041
+
+1, 1, 1, 0, 0

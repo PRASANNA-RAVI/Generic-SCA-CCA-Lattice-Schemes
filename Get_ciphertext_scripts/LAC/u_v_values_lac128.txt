@@ -1,0 +1,5 @@
+Choice_u, Choice_v: 5, 184
+0, 0, 1,
+
+Choice_u, Choice_v: 14, 40
+1, 0, 0,

@@ -1,0 +1,14 @@
+Choice_u, Choice_v1, Choice_v2: 207,64,240
+0, 0, 0, 0, 0, 0, 1, 0, 1,
+
+Choice_u, Choice_v1, Choice_v2: 207,64,32
+0, 0, 0, 0, 0, 1, 0, 1, 1,
+
+Choice_u, Choice_v1, Choice_v2: 207,64,64
+0, 0, 1, 0, 1, 1, 1, 1, 1,
+
+Choice_u, Choice_v1, Choice_v2: 207,64,112
+0, 1, 0, 1, 1, 1, 1, 1, 1,
+
+Choice_u, Choice_v1, Choice_v2: 207,64,208
+0, 0, 0, 1, 0, 0, 1, 1, 0,
