@@ -14,6 +14,8 @@ the following schemes: `Kyber512`, `LAC128`, `LAC256` and `NewHope512`. While th
 
 ## Information about outputs:
 
+### LAC and Kyber
+
 A ciphertext can be identified using as ordered pair (u,v) in the case of Kyber512 or LAC128, while it can be identified using a tuple (u,v1,v2) in the case of NewHope512. The program when run, outputs a
 sequence of 0s and 1s denoted as SQ for every tried ciphertext combination. For example, in the case of Kyber512, the output is of the form,  
 
@@ -25,24 +27,26 @@ This means that the ordered pair `(35,2)` was tried and the sequence SQ `1,1,0,0
 
 The chosen ciphertexts for our attack on Kyber512 are
 
-`Choice_u, Choice_v = 209, 210`
+`Choice_u, Choice_v = 210, 1`
 
 `1, 0, 0, 0, 0,`
 
-`Choice_u, Choice_v = 210, 2705`
+`Choice_u, Choice_v = 210, 7`
 
 `0, 0, 0, 0, 1`
 
-`Choice_u, Choice_v = 101, 644`
+`Choice_u, Choice_v = 101, 2`
 
 `1, 1, 0, 0, 0`
 
-`Choice_u, Choice_v = 100, 2626`
+`Choice_u, Choice_v = 100, 6`
 
 `0, 0, 0, 1, 1`
 
-`Choice_u, Choice_v = 415, 1041`
+`Choice_u, Choice_v = 415, 3`
 
 `1, 1, 1, 0, 0`
 
 However, there could exist multiple ciphertexts through which the same attack can be mounted.
+
+### NewHope512
