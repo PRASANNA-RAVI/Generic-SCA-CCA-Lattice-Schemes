@@ -2,7 +2,7 @@ objects = main.o
 cflags = -O3 -Wall -DNDEBUG
 
 get_chosen_ct : $(objects)
-	gcc -o get_chosen_ct $(objects)  -lcrypto -lz
+	gcc -o get_chosen_ct $(objects)
 
 main.o: main.c api.h lac_param.h
 	gcc -c main.c $(cflags)
