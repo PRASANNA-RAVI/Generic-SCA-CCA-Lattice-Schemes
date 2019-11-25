@@ -1,5 +1,5 @@
 CC = /usr/bin/gcc -g
-LDFLAGS = -lcrypto
+LDFLAGS =
 
 SOURCES = PQCgenKAT_kem.c
 HEADERS = api.h params.h

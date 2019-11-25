@@ -1,5 +1,5 @@
 CC=/usr/bin/gcc
-LDFLAGS=-lcrypto
+LDFLAGS=
 
 SOURCES= test.c reduce.c
 HEADERS= api.h params.h reduce.h
