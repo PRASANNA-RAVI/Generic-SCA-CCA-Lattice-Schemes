@@ -17,7 +17,7 @@ traces to perform the chosen-ciphertext attack with pre-computed chosen-cipherte
 
 ## Attack_scripts
 
-This directory contains side-channel traces corresponding to the targeted operations within various schemes and the matlab scripts to perform the attack using the side-channel traces.
+This directory contains side-channel traces corresponding to the targeted operations within various schemes and the MATLAB scripts to perform the attack using the side-channel traces.
 
 ## License
 All code in this repository is released under the conditions of [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
