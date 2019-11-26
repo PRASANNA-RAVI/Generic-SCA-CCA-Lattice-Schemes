@@ -8,8 +8,8 @@
 
 #define LAC_ETA 1
 
-#define LAC_128    0
-#define LAC_256    1
+#define LAC_128    1
+#define LAC_256    0
 
 #define NTESTS 10
 
