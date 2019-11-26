@@ -22,6 +22,8 @@ Each character triggers the device into performing the following operations. The
 
 - `S`: Computes the decapsulation operation for a given chosen ciphertext to recover the secret key one coefficient at a time.
 
+This communication protocol is implemented in the wrapper script `test.c` present in the `mupq/crypto_kem/` folder.
+
 ## Trigger for Trace-Acquisition:
 
 GPIO triggers have been embedded into the program which indicate the start and end of sensitive operations whose side-channel measurements are to be captured. The GPIO trigger does high
