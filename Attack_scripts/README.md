@@ -14,3 +14,11 @@ Trace set for attack is present in a single folder with each trace file consisti
 ## R5ND_1kemcca_5d
 
 Trace set for attack is present in a single folder with each trace file consisting of two traces to recover the corresponding secret coefficient.
+
+# Two types of attacks:
+
+There are two types of attacks implemented in two attack scripts. In both the techniques, t-test is first employed between the two trace sets of the pre-processing phase to choose the points of interest (PoI) on the trace distinguishing the two classes (c/m = 0 or 1). Subsequently, two different techniques to classify based on how the points of interest (PoI) are handled.
+
+- t-test based reduced template technique: In this technique, we use the PoI to build template for each class and compute their means as reduced templates. In the attack phase, we perform the least sum-of-squared difference test to determine the class.
+
+- t-test based clustering technique: In this technique, we compute the mean of PoI of each trace in the trace set of the pre-processing phase. If we plot the mean of PoI of every trace, we can obtain a clear clustering based on the class to which the trace belongs... Now, in the attack phase, we can simply compute the mean of PoI of the trace to be classified and then decide the class based on the cluster to which the mean belongs to.
