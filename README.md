@@ -19,5 +19,9 @@ traces to perform the chosen-ciphertext attack with pre-computed chosen-cipherte
 
 This directory contains side-channel traces corresponding to the targeted operations within various schemes and the MATLAB scripts to perform the attack using the side-channel traces.
 
+## Attack_Simulations (NewHope)
+
+This directory contains plaintext oracle based chosen ciphertext attack simulations on both variants of NewHope (NewHope512 and NewHope1024) which are written completely in C.
+
 ## License
 All code in this repository is released under the conditions of [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
