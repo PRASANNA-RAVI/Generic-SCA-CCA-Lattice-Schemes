@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <unistd.h>
 
 #include "rng.h"
 #include "api.h"
@@ -12,6 +13,7 @@
 #include "rng.h"
 #include "verify.h"
 #include "fips202.h"
+
 
 #define POLY_MASK_1 0X9ABDCD93
 #define POLY_MASK_2 0X91CB0C2C
@@ -101,6 +103,7 @@ static int check_canary(unsigned char *d)
 
 int main(int argc, char *argv[])
 {
+
     // Seed different randomness...
 
     unsigned char       seed[48];
@@ -187,7 +190,6 @@ int main(int argc, char *argv[])
   int bit_array[(2*NEWHOPE_K+1)*(2*NEWHOPE_K+1)];
   int prev_bit_array[(2*NEWHOPE_K+1)*(2*NEWHOPE_K+1)];
 
-    FILE *f;
     flag = 1;
 
     int flag_u = 0;
@@ -245,7 +247,8 @@ int main(int argc, char *argv[])
 
     if(strcmp(argv[1],"generate_first_cts") == 0)
     {
-        printf("Generating First G ciphertexts...");
+
+    FILE *f;
 
     int flag_all_zeros = 0;
     int flag_all_ones = 0;
@@ -430,7 +433,6 @@ int main(int argc, char *argv[])
 
     if(strcmp(argv[1], "resolve_conflicts_and_compute_complexity") == 0)
     {
-
         // We simply read the trans_decrypt_success_matrix from the text file and then test how many secret candidate tuples still are not
         // distinguishable (same columns) and estimate attacker's complexity...
 
@@ -787,13 +789,14 @@ int main(int argc, char *argv[])
             printf("No Failure: %d\n",no_failure);
         }
 
-        printf("Average Attacker Complexity: %5.5f\n",resolve_complexity+MAX_TRIALS);
+        printf("Average Attacker Complexity per tuple: %5.5f\n",resolve_complexity+MAX_TRIALS);
     }
 
     // Now, that we have collected all the ciphertexts, let us perform the actual attack on NewHope1024...
 
     if(strcmp(argv[1], "run_attacks") == 0)
     {
+
         int total_attacks = atoi(argv[2]);
         float trace_complexity = 0;
         float success_rate = 0;

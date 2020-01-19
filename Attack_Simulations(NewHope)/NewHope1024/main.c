@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <unistd.h>
 
 #include "rng.h"
 #include "api.h"
@@ -12,6 +13,7 @@
 #include "rng.h"
 #include "verify.h"
 #include "fips202.h"
+
 
 // You can run the program with the following options:
 
@@ -537,7 +539,6 @@ int main(int argc, char *argv[])
     }
     fprintf(ftrans,"\n");
     fclose(ftrans);
-
     }
 
     // In this loop, we basically try to identify the candidate tuples which are still not resolvable and estimate the
@@ -546,7 +547,6 @@ int main(int argc, char *argv[])
 
     if(strcmp(argv[1],"compute_complexity") == 0)
     {
-
         // We simply read the trans_decrypt_success_matrix from the text file and then test how many secret candidate tuples still are not
         // distinguishable (same columns) and estimate attacker's complexity...
 
@@ -676,7 +676,7 @@ int main(int argc, char *argv[])
     }
     fclose(f5);
 
-    printf("Average Attacker Complexity: %5.10f\n",resolve_complexity+MAX_TRIALS); // This prints the estimated attacker's complexity assuming CBD distribution of the secret coefficients and ceil(log_2(n)) stages in the case of "n" unresolved candidate tuples...
+    printf("Average Attacker Complexity per tuple: %5.10f\n",resolve_complexity+MAX_TRIALS); // This prints the estimated attacker's complexity assuming CBD distribution of the secret coefficients and ceil(log_2(n)) stages in the case of "n" unresolved candidate tuples...
 
     sprintf(colliding_rows_numbers,"colliding_rows_numbers.dat");
     FILE *f6 = fopen(colliding_rows_numbers, "w+");
@@ -704,7 +704,6 @@ int main(int argc, char *argv[])
 
     if(strcmp(argv[1],"resolve_conflicts") == 0)
     {
-
     sprintf(greatest_sum_no_collected,"greatest_sum_no_collected.dat");
     sprintf(colliding_rows,"colliding_rows.dat");
     sprintf(colliding_rows_numbers,"colliding_rows_numbers.dat");
@@ -942,7 +941,6 @@ int main(int argc, char *argv[])
     }
     fclose(f5);
     fclose(f6);
-
     }
 
     // Now, that we have collected all the ciphertexts, let us perform the actual attack on NewHope1024...
