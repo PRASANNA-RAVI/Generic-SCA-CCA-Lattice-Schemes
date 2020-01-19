@@ -1,4 +1,4 @@
-CC = /usr/bin/gcc -O3 -std=c99 -g
+CC = /usr/bin/gcc -O3
 LDFLAGS = -lcrypto
 
 SOURCES = kem.c cpapke.c fips202.c ntt.c poly.c precomp.c reduce.c rng.c verify.c main.c
