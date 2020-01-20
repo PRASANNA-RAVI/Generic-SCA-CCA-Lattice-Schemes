@@ -106,6 +106,8 @@ int crypto_kem_dec(unsigned char *ss, const unsigned char *ct, const unsigned ch
     }
     shake256(k_coins_d, 3 * NEWHOPE_SYMBYTES, buf, 2 * NEWHOPE_SYMBYTES);
 
+    // These operations are commented because they are not necessary for our attack...
+
     // cpapke_enc(ct_cmp, buf, pk, k_coins_d + NEWHOPE_SYMBYTES, 1);                                  /* coins are in k_coins_d+NEWHOPE_SYMBYTES */
     //
     // for (i = 0; i < NEWHOPE_SYMBYTES; i++) {

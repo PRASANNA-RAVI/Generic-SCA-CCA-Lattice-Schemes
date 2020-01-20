@@ -144,35 +144,9 @@ void cpapke_keypair(unsigned char *pk,
     poly_ntt(&ehat);
 
     poly_mul_pointwise(&ahat_shat, &shat, &ahat);
-    poly_add(&bhat, &ehat, &ahat_shat, 0);
+    poly_add(&bhat, &ehat, &ahat_shat);
 
     poly_tobytes(sk, &shat);
-
-    // poly_invntt(&shat);
-    //
-    // printf("Secret in KeyGen\n");
-    // int coeff;
-    // for(int i = 0;i< NEWHOPE_N;i++)
-    // {
-    //     if(shat.coeffs[i] >= NEWHOPE_Q)
-    //         coeff = shat.coeffs[i] - NEWHOPE_Q;
-    //     else if(shat.coeffs[i] >= (NEWHOPE_Q - NEWHOPE_K) && shat.coeffs[i] < NEWHOPE_Q)
-    //         coeff = -1*(NEWHOPE_Q - shat.coeffs[i]);
-    //     else
-    //         coeff = shat.coeffs[i];
-    //     printf("s[%d] = %d, %d\n",i,shat.coeffs[i],coeff);
-    // }
-
-    // printf("%d, %d\n",shat.coeffs[0],shat.coeffs[256]);
-    // printf("%d, %d\n",shat.coeffs[511],shat.coeffs[255]);
-    // printf("%d, %d\n",shat.coeffs[510],shat.coeffs[254]);
-    // printf("%d, %d\n",shat.coeffs[509],shat.coeffs[253]);
-    // printf("%d, %d\n",shat.coeffs[508],shat.coeffs[252]);
-    // printf("%d, %d\n",shat.coeffs[507],shat.coeffs[251]);
-    // printf("%d, %d\n",shat.coeffs[506],shat.coeffs[250]);
-    // printf("%d, %d\n",shat.coeffs[505],shat.coeffs[249]);
-    // printf("%d, %d\n",shat.coeffs[504],shat.coeffs[248]);
-    // printf("%d, %d\n",shat.coeffs[503],shat.coeffs[247]);
 
     encode_pk(pk, &bhat, publicseed);
 }
@@ -211,7 +185,7 @@ void cpapke_enc(unsigned char *c,
     poly_ntt(&eprime);
 
     poly_mul_pointwise(&uhat, &ahat, &sprime);
-    poly_add(&uhat, &uhat, &eprime, 0);
+    poly_add(&uhat, &uhat, &eprime);
 
     for(int i=0;i<NEWHOPE_N;i++)
     {
@@ -221,23 +195,13 @@ void cpapke_enc(unsigned char *c,
             uhat.coeffs[i] = 0;
     }
 
-    // printf("uhat... with count: %d\n",count);
-    // for(int i=0;i<NEWHOPE_N;i++)
-    // {
-    //     printf("%d, ",uhat.coeffs[i]);
-    // }
-    // printf("\n");
-
     poly_ntt(&uhat);
 
     poly_mul_pointwise(&vprime, &bhat, &sprime);
     poly_invntt(&vprime);
 
-    poly_add(&vprime, &vprime, &eprimeprime, 0);
-    // if(direct == 1)
-        poly_add(&vprime, &vprime, &v, 0); // add message
-    // else
-        // poly_add(&vprime, &vprime, &v, 1); // add message
+    poly_add(&vprime, &vprime, &eprimeprime);
+    poly_add(&vprime, &vprime, &v); // add message
 
     encode_c(c, &uhat, &vprime, choice_v_1, choice_v_2);
 }
@@ -264,68 +228,13 @@ int cpapke_dec(unsigned char *m,
 
     decode_c(&uhat, &vprime, c);
 
-    // for(int i=0;i<NEWHOPE_N;i++)
-    // {
-    //     if(i == 0 || i == 256)
-    //     {
-    //
-    //     }
-    //     else
-    //         vprime.coeffs[i] = 0;
-    // }
-    //
-    // vprime.coeffs[0] = 9217;
-    // vprime.coeffs[256] = 10753;
-
-    // printf("vprime in dec...\n");
-    // for(int i=0;i<NEWHOPE_N;i++)
-    // {
-    //     printf("%d, ", vprime.coeffs[i]);
-    // }
-    // printf("\n");
-
     poly_mul_pointwise(&tmp, &shat, &uhat);
     poly_invntt(&tmp);
 
-    // printf("uhat x s...\n");
-    // for(int i=0;i<NEWHOPE_N;i++)
-    // {
-    //     printf("%d, ",tmp.coeffs[i]);
-    // }
-    // printf("\n");
-    //
-    // poly_invntt(&shat);
-    //
-    // printf("Secret in KeyGen\n");
-    // int coeff;
-    // for(int i=0;i<NEWHOPE_N;i++)
-    // {
-    //     printf("s[%d] = %d, ",i,shat.coeffs[i]);
-    // }
-    // printf("\n");
-
-    // for(int i = 0;i< NEWHOPE_N;i++)
-    // {
-    //     if(shat.coeffs[i] >= NEWHOPE_Q)
-    //         coeff = shat.coeffs[i] - NEWHOPE_Q;
-    //     else if(shat.coeffs[i] >= (NEWHOPE_Q - NEWHOPE_K) && shat.coeffs[i] < NEWHOPE_Q)
-    //         coeff = -1*(NEWHOPE_Q - shat.coeffs[i]);
-    //     else
-    //         coeff = shat.coeffs[i];
-    //     printf("s[%d] = %d, %d\n",i,shat.coeffs[i],coeff);
-    // }
-
-    // poly_invntt(&shat);
-    // printf("%d, %d\n",shat.coeffs[0],shat.coeffs[256]);
-    // printf("%d, %d\n",shat.coeffs[511],shat.coeffs[255]);
-    // printf("%d, %d\n",shat.coeffs[510],shat.coeffs[254]);
-    // printf("%d, %d\n",shat.coeffs[509],shat.coeffs[253]);
-    // printf("%d, %d\n",shat.coeffs[508],shat.coeffs[252]);
-
     poly_sub(&tmp, &tmp, &vprime);
-
     poly_tomsg(m, &tmp);
 
+    // Message Oracle Function...
 
     int count_ones = 0;
     int count_zeros = 0;
@@ -359,9 +268,6 @@ int cpapke_dec(unsigned char *m,
     {
         message_oracle = 2;
     }
-    // for(int i = 0;i<32;i++)
-    //     printf("%d",m[i]);
-    // printf("\n");
 
     return message_oracle;
 }

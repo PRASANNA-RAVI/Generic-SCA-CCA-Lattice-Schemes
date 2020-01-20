@@ -359,48 +359,11 @@ void poly_mul_pointwise(poly *r, const poly *a, const poly *b)
 *              - const poly *a: pointer to first input polynomial
 *              - const poly *b: pointer to second input polynomial
 **************************************************/
-// void poly_add(poly *r, const poly *a, const poly *b)
-// {
-//   int i;
-//   for(i=0;i<NEWHOPE_N;i++)
-//     r->coeffs[i] = (a->coeffs[i] + b->coeffs[i]) % NEWHOPE_Q;
-// }
-
-void poly_add(poly *r, const poly *a, const poly *b, int fault)
+void poly_add(poly *r, const poly *a, const poly *b)
 {
-    int i;
-    if(fault == 0)
-    {
-        for (i = 0; i < NEWHOPE_N; i++)
-        {
-            r->coeffs[i] = (a->coeffs[i] + b->coeffs[i]) % NEWHOPE_Q;
-        }
-    }
-    else
-    {
-        for (i = 0; i < NEWHOPE_N; i++)
-        {
-            if(i == 0 && b->coeffs[i] == 0x1800) // Here, coefficient b is zero (6144 = 0x1800).
-            {
-                // send_USART_bytes((a->coeffs+i),2);
-                // send_USART_bytes((b->coeffs+i),2);
-                // gpio_set(GPIOA, GPIO7);
-                // gpio_clear(GPIOA, GPIO7);
-                // r->coeffs[i] = (a->coeffs[i] + b->coeffs[i]) % NEWHOPE_Q;
-                r->coeffs[i] = (a->coeffs[i] + 0) % NEWHOPE_Q;
-                // printf("%d",r->coeffs[i]);
-                // send_USART_bytes(0X00,1);
-                // hal_send_str("\n");
-                // r->coeffs[i] =
-                // send_USART_bytes((r->coeffs+i),2);
-            }
-            else
-            {
-                r->coeffs[i] = (a->coeffs[i] + b->coeffs[i]) % NEWHOPE_Q;
-                // send_USART_bytes(0X01,1);
-            }
-        }
-    }
+  int i;
+  for(i=0;i<NEWHOPE_N;i++)
+    r->coeffs[i] = (a->coeffs[i] + b->coeffs[i]) % NEWHOPE_Q;
 }
 
 /*************************************************

@@ -57,8 +57,6 @@ int crypto_kem_enc(unsigned char *ct, unsigned char *ss, const unsigned char *pk
     int i;
 
     randombytes(buf, NEWHOPE_SYMBYTES);
-    // for(i=0;i<NEWHOPE_SYMBYTES;i++)
-    //     buf[i] = 0xAA;
 
     shake256(buf, NEWHOPE_SYMBYTES, buf, NEWHOPE_SYMBYTES);                                     /* Don't release system RNG output */
     shake256(buf + NEWHOPE_SYMBYTES, NEWHOPE_SYMBYTES, pk, NEWHOPE_CCAKEM_PUBLICKEYBYTES);      /* Multitarget countermeasure for coins + contributory KEM */
@@ -105,6 +103,8 @@ int crypto_kem_dec(unsigned char *ss, const unsigned char *ct, const unsigned ch
         buf[NEWHOPE_SYMBYTES + i] = sk[NEWHOPE_CCAKEM_SECRETKEYBYTES - 2 * NEWHOPE_SYMBYTES + i];
     }
     shake256(k_coins_d, 3 * NEWHOPE_SYMBYTES, buf, 2 * NEWHOPE_SYMBYTES);
+
+    // These operations are commented because they are not needed...
 
     // cpapke_enc(ct_cmp, buf, pk, k_coins_d + NEWHOPE_SYMBYTES, 1);                                  /* coins are in k_coins_d+NEWHOPE_SYMBYTES */
     //
